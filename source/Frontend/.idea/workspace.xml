@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a9995951-fb7b-4ab0-b3ca-9ae6d771d59c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/ChangesCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/FeatureInfoLabels.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/FeatureListPagination.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/LabeldValue.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/MyTheme.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/TitleSearch.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/date.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/layout.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Metadata.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/PagedData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/PaginationResult.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/feature.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/next-env.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/features/[hash].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/FeatureListPaging.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/featureListData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/featureListFiltered.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/featureListFilteredSorted.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/featureListFilteredSortedPaged.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/featureListRequestFiles.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/styles/utils.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="TSX" />
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
+  <component name="ProjectId" id="1kKTKwpYFyr2hWYMR6oKXh0lPA0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="ts.external.directory.path" value="C:\develop\M365\M365.RoadMapInfo\source\Frontend\node_modules\typescript\lib" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\components" />
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\store" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\components" />
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\pages" />
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\pages\featureblock" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\pages\Theme.tsx" />
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\pages\features\FeatureInfoLabels.tsx" />
+      <recent name="C:\develop\M365\M365.RoadMapInfo\source\Frontend\pages\features\LabeldValue.tsx" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a9995951-fb7b-4ab0-b3ca-9ae6d771d59c" name="Default Changelist" comment="" />
+      <created>1605448226459</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605448226459</updated>
+      <workItem from="1605448229597" duration="9222000" />
+      <workItem from="1605463628421" duration="64000" />
+      <workItem from="1605463903118" duration="4669000" />
+      <workItem from="1605717132808" duration="2512000" />
+      <workItem from="1605814536579" duration="2307000" />
+      <workItem from="1605972352393" duration="2236000" />
+      <workItem from="1607366399875" duration="4419000" />
+      <workItem from="1607670462454" duration="6480000" />
+      <workItem from="1607677796664" duration="8603000" />
+      <workItem from="1607719098313" duration="3259000" />
+      <workItem from="1607764403910" duration="4003000" />
+      <workItem from="1607768902352" duration="6483000" />
+      <workItem from="1607867369464" duration="10082000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
