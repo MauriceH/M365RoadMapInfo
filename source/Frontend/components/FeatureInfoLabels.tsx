@@ -1,0 +1,35 @@
+import Feature from "../model/feature";
+import {Grid, Typography} from "@material-ui/core";
+import {LabeledValue} from "./LabeldValue";
+import {FormatDate} from "./date";
+import React from "react";
+import {styled} from "@material-ui/styles";
+
+export interface Props {
+    feature : Feature
+}
+
+export function FeatureInfoLabels({feature} : Props) {
+    return <Grid container>
+        <Grid item md={6} xs={12}>
+            <div style={{minWidth:'180px'}}>
+                <LabeledValue label={'Added:'}>
+                    {FormatDate(feature.addedToRoadmap)}
+                </LabeledValue>
+                <LabeledValue label={'Modified:'}>
+                    {FormatDate(feature.lastModified)}
+                </LabeledValue>
+            </div>
+        </Grid>
+        <Grid item md={6} xs={12}>
+            <div style={{minWidth:'180px'}}>
+                <LabeledValue label={'Status:'}>
+                    {feature.status}
+                </LabeledValue>
+                <LabeledValue label={'Release:'}>
+                    {feature.release}
+                </LabeledValue>
+            </div>
+        </Grid>
+    </Grid>;
+}
