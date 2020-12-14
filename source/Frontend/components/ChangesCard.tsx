@@ -1,6 +1,6 @@
 import Feature, {Change} from "../model/feature";
 import {Card, CardHeader, Chip} from "@material-ui/core";
-import {FormatDate} from "./date";
+import {formatDate} from "./date";
 import React from "react";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -80,7 +80,7 @@ export const ChangesCard = ({feature}: Props) => {
             <div style={{padding: '0px 30px 30px 30px', marginBottom: '-10px'}}>
                 {feature.changes?.map(changeset => {
                     return (<div key={changeset.date} style={{marginBottom: '20px'}}>
-                        <b>{FormatDate(changeset.date)} - {changeset.type}</b>
+                        <b>{formatDate(changeset.date)} - {changeset.type}</b>
                         <div style={{'marginLeft': '20px'}}>
                             {group(changeset.changes).map(group => {
                                 return (
