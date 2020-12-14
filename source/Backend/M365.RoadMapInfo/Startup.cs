@@ -1,3 +1,4 @@
+using M365.RoadMapInfo.Import;
 using M365.RoadMapInfo.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +42,8 @@ namespace M365.RoadMapInfo
             {
                 options.UseSqlServer(Configuration.GetConnectionString(ConnectionStringName));
             });
-
+            services.AddTransient<RoadMapImporter>();
+            services.Configure<ImportConfig>(Configuration.GetSection("Importer"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +59,11 @@ namespace M365.RoadMapInfo
             app.UseResponseCompression();
 
             //app.UseHttpsRedirection();
-
-            
+           
             
             app.UseRouting();
 
             app.UseAuthorization();
-            
             
 
             app.UseEndpoints(endpoints =>

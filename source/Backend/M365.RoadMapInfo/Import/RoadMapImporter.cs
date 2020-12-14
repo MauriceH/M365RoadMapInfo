@@ -10,23 +10,25 @@ using System.Threading.Tasks;
 using AutoMapper.Internal;
 using M365.RoadMapInfo.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace M365.RoadMapInfo.Import
 {
     public class RoadMapImporter
     {
         private readonly MainDbContext _dbContext;
-        private ImportRowMapper _mapper = new ImportRowMapper();
+        private readonly IOptions<ImportConfig> _config;
+        private readonly ImportRowMapper _mapper = new ImportRowMapper();
 
-        public RoadMapImporter(MainDbContext dbContext)
+        public RoadMapImporter(MainDbContext dbContext, IOptions<ImportConfig> config)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         public async Task ImportAsync()
         {
-            var path = @"E:\OneDrive\validData\van Clewe validData GmbH\validData goes o365 - General\Technische Doku\RoadMap";
-
+            var path = _config.Value?.CsvPath ?? throw new Exception("csv import path not configured");
             var filesInDirectory = Directory.GetFiles(path);
             var validFileNames = FilterFilesByFileNameStructure(filesInDirectory).ToList();
 
@@ -146,8 +148,6 @@ namespace M365.RoadMapInfo.Import
                 await _dbContext.SaveChangesAsync();
                 Console.WriteLine(
                     $"{fileInfo.DownloadTime.Date.ToShortDateString()} - added: {featuresAdded}, modified: {featuresModified}, ttt: {ttt} ");
-                //File.Move(fileInfo.FilePath, $"{fileInfo.FilePath.Substring(0,fileInfo.FilePath.Length - 9)}");
-                //File.Move(fileInfo.FilePath, $"{fileInfo.FilePath}.imported");
             }
         }
 
