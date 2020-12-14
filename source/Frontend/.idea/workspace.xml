@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9995951-fb7b-4ab0-b3ca-9ae6d771d59c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/ChangesCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/FeatureInfoLabels.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/FeatureListPagination.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/LabeldValue.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/MyTheme.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/TitleSearch.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/date.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/layout.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Metadata.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/PagedData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/PaginationResult.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/feature.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/next-env.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/features/[hash].tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/FeatureListPaging.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/featureListData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/featureListFiltered.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/featureListFilteredSorted.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/featureListFilteredSortedPaged.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/featureListRequestFiles.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/utils.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/M365.RoadMapInfo/Import/RoadMapImporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/M365.RoadMapInfo/Import/RoadMapImporter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,13 +20,13 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1kKTKwpYFyr2hWYMR6oKXh0lPA0" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -77,7 +47,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\develop\M365\M365.RoadMapInfo\source\Frontend\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -117,11 +87,17 @@
       <workItem from="1607719098313" duration="3259000" />
       <workItem from="1607764403910" duration="4003000" />
       <workItem from="1607768902352" duration="6483000" />
-      <workItem from="1607867369464" duration="10082000" />
+      <workItem from="1607867369464" duration="13575000" />
+      <workItem from="1607923927804" duration="30000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
   </component>
 </project>

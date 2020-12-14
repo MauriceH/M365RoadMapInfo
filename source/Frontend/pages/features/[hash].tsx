@@ -3,7 +3,7 @@ import {getAllFeatureHashes, getFeatureData} from '../../lib/features'
 import Head from 'next/head'
 import Feature from "../../model/feature";
 import {ParsedUrlQuery} from "querystring";
-import {FormatDate} from '../../components/date'
+import {formatDate} from '../../components/date'
 import {Card, CardContent, CardHeader, Chip, Theme, Typography} from "@material-ui/core";
 import {GetStaticPaths, GetStaticProps} from "next";
 import React from "react";
@@ -67,7 +67,7 @@ export const FeatureInfo = ({feature}: Props) => (
             <title>#{feature.no} - {feature.description}</title>
         </Head>
 
-        <MainContainer>
+        <MainContainer style={{marginLeft: 'auto', marginRight: 'auto'}}>
 
             <MainCardContainer>
                 <Card>

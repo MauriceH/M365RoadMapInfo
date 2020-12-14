@@ -4,6 +4,14 @@ import featureListData from "./featureListData";
 
 export const featureListSearchValue = atom<string>({key: 'featureListSearchValue', default: ''});
 
+export const featureListFilteredTotalCount = selector<number>({
+    key: 'featureListFilteredTotalCount',
+    get: ({get}) => {
+        const features = get(featureListFiltered);
+        return features.length;
+    }
+});
+
 export const featureListFiltered = selector<FeatureSlim[]>({
     key: 'featureListFiltered',
     get: ({get}) => {

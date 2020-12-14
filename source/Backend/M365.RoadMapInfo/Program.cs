@@ -18,14 +18,14 @@ namespace M365.RoadMapInfo
         public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            var scope =  host.Services.CreateScope();
-            var db =  scope.ServiceProvider.GetRequiredService<MainDbContext>();
-            await db.Database.MigrateAsync();
+            using (var scope = host.Services.CreateScope())
+            {
+                var db =  scope.ServiceProvider.GetRequiredService<MainDbContext>();
+                await db.Database.MigrateAsync();
             
-            var importer = new RoadMapImporter(db);
-            await importer.ImportAsync();
-            
-            scope.Dispose();
+                var importer = scope.ServiceProvider.GetRequiredService<RoadMapImporter>();
+                await importer.ImportAsync();
+            }
             
             await host.RunAsync();
         }

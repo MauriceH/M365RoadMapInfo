@@ -1,7 +1,7 @@
 import Feature from "../model/feature";
 import {Grid, Typography} from "@material-ui/core";
 import {LabeledValue} from "./LabeldValue";
-import {FormatDate} from "./date";
+import {formatDate} from "./date";
 import React from "react";
 import {styled} from "@material-ui/styles";
 
@@ -14,10 +14,10 @@ export function FeatureInfoLabels({feature} : Props) {
         <Grid item md={6} xs={12}>
             <div style={{minWidth:'180px'}}>
                 <LabeledValue label={'Added:'}>
-                    {FormatDate(feature.addedToRoadmap)}
+                    {formatDate(feature.addedToRoadmap)}
                 </LabeledValue>
                 <LabeledValue label={'Modified:'}>
-                    {FormatDate(feature.lastModified)}
+                    {formatDate(feature.lastModified)}
                 </LabeledValue>
             </div>
         </Grid>

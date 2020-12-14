@@ -2,16 +2,28 @@ import Head from 'next/head'
 import Layout, {siteTitle} from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
-import {GetStaticProps} from 'next'
 import PaginationResult from "../model/PaginationResult";
 import {FeatureSlim} from "../model/feature";
 import fs from "fs";
-import {useEffect} from "react";
-import {useRecoilValue, useRecoilValueLoadable, useSetRecoilState} from "recoil";
+import {useCallback, useEffect} from "react";
+import {useRecoilValue, useSetRecoilState} from "recoil";
 import featureListData from "../store/featureListData";
 import {featureListFilteredSortedPaged} from "../store/featureListFilteredSortedPaged";
 import {FilterListPagination} from "../components/FeatureListPagination";
 import {TitleSearch} from "../components/TitleSearch";
+import {
+    Card,
+    CardHeader,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TablePagination,
+    TableRow,
+    TableSortLabel
+} from "@material-ui/core";
+import {formatDate} from "../components/date";
+import {GetStaticProps} from "next";
 
 
 interface Props {
@@ -19,17 +31,16 @@ interface Props {
 }
 
 
-
 export default function Home({pageFiles}: Props) {
     const setFeatureData = useSetRecoilState(featureListData);
     const featureData = useRecoilValue(featureListFilteredSortedPaged);
 
     useEffect(() => {
-        if(featureData?.items?.length ?? 0 > 0) return;
+        if (featureData?.items?.length ?? 0 > 0) return;
         const loading = async () => {
             try {
                 const files = pageFiles
-                let features = [];
+                let features = [] as FeatureSlim[];
                 for (const fileName of files) {
                     const response = await fetch(`features/${fileName}`)
                     const results = await response.json() as FeatureSlim[]
@@ -52,21 +63,82 @@ export default function Home({pageFiles}: Props) {
             </Head>
             {featureData &&
             <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-              <h2 className={utilStyles.headingLg}>Features</h2>
-              <div>
-                <TitleSearch />
-              </div>
-              <div>
-                <FilterListPagination />
-              </div>
-              <ul className={utilStyles.list}>
-                  {featureData.items.map(feature => (
-                      <div key={feature.no}>
-                          No: <Link href={'features/' + feature.valueHash}><a>#{feature.no} - {feature.description}</a></Link>
-                      </div>
-                  ))}
-              </ul>
+              <Card>
+                <CardHeader title={'Features'}/>
+                <div>
+                  <TitleSearch/>
+                </div>
+                <div>
+                  <FilterListPagination/>
+                </div>
+                <div>
 
+                </div>
+                <Table size={'small'}>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        <TableSortLabel active={false}>
+                          No
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell>
+                        <TableSortLabel active={false}>
+                          Description
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell>
+                        <TableSortLabel active={false}>
+                          Status
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell>
+                        <TableSortLabel active={false}>
+                          Last Modified
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell>
+                        <TableSortLabel active={false}>
+                          Product
+                        </TableSortLabel>
+                      </TableCell>
+                      <TableCell>
+                        <TableSortLabel active={false}>
+                          Platform
+                        </TableSortLabel>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                      {featureData.items.map(feature => (
+                          <TableRow
+                              hover
+                              tabIndex={-1}
+                              key={feature.no}
+                          >
+                              <TableCell scope="row">
+                                  <Link href={'features/' + feature.valueHash}>{feature.no}</Link>
+                              </TableCell>
+                              <TableCell scope="row">
+                                  {feature.description}
+                              </TableCell>
+                              <TableCell scope="row">
+                                  {feature.status}
+                              </TableCell>
+                              <TableCell scope="row">
+                                  {formatDate(feature.lastModified)}
+                              </TableCell>
+                              <TableCell scope="row">
+                                  {feature?.tagCategories?.find(cat => cat.category == 'Product')?.tags.join(", ")}
+                              </TableCell>
+                              <TableCell scope="row">
+                                  {feature?.tagCategories?.find(cat => cat.category == 'Platform')?.tags.join(", ")}
+                              </TableCell>
+                          </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+              </Card>
             </section>
 
             }
@@ -74,13 +146,14 @@ export default function Home({pageFiles}: Props) {
     )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () =>
+{
 
 
     let response = await fetch('http://localhost:5000/RoadMap?totalCount=true');
     let data = await response.json() as PaginationResult<FeatureSlim>
 
-    const totalCount = data.meta.totalCount
+    const totalCount = data.meta.totalCount ?? 0
 
     const loads = Math.ceil(totalCount / data.meta.pageSize);
     const pagefiles = [];
