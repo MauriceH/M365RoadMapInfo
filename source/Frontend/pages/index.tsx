@@ -26,6 +26,7 @@ import {formatDate} from "../components/date";
 import {GetStaticProps} from "next";
 import {featureListPage} from "../store/FeatureListPaging";
 import {featureListSorting} from "../store/featureListFilteredSorted";
+import createGetRequestOptions from "../lib/api";
 
 
 interface Props {
@@ -146,7 +147,7 @@ export default function Home({pageFiles}: Props) {
 export const getStaticProps: GetStaticProps = async () => {
 
 
-    let response = await fetch('http://localhost:5000/RoadMap?totalCount=true');
+    let response = await fetch(process.env.BACKEND_HOST + '/RoadMap?totalCount=true',createGetRequestOptions());
     let data = await response.json() as PaginationResult<FeatureSlim>
 
     const totalCount = data.meta.totalCount ?? 0
@@ -155,12 +156,12 @@ export const getStaticProps: GetStaticProps = async () => {
     const pagefiles = [];
 
     for (let i = 1; i < loads; i++) {
-        response = await fetch('http://localhost:5000/RoadMap?page=' + i);
+        response = await fetch(process.env.BACKEND_HOST + '/RoadMap?page=' + i, createGetRequestOptions());
         data = await response.json() as PaginationResult<FeatureSlim>
         if (data.meta.items == 0) continue;
         const jsonContent = JSON.stringify(data.items);
         const fileName = 'data-' + data.meta.listHash + '.json';
-        let path = 'public/features/' + fileName;
+        const path = 'public/features/' + fileName;
         if (!fs.existsSync(path)) {
             fs.writeFile(path, jsonContent, 'utf8', function (err) {
                 if (err) {

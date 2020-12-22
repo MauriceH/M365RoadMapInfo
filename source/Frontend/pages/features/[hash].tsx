@@ -123,7 +123,7 @@ interface Parameter extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const hashes = await getAllFeatureHashes()
-    let paths: Array<string | { params: ParsedUrlQuery; locale?: string }> = hashes.map(hash => {
+    const paths: Array<string | { params: ParsedUrlQuery; locale?: string }> = hashes.map(hash => {
         return {
             params: {hash: hash}
         }
