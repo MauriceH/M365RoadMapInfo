@@ -15,8 +15,6 @@ on:
 jobs:
   backend:
     runs-on: ubuntu-latest
-    env:
-      working-directory:  ./source/Backend
     steps:
       -
         name: Checkout
@@ -45,8 +43,8 @@ jobs:
         with:
           push: true
           tags: m365/m365-roadmap-frontend:latest
-          file:  dockerfile 
-          working-directory: ./source/Backend  
+          file:  ./dockerfile 
+          context: ./source/Backend  
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
