@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: de.maurice144.m365-roadmap-frontend:latest
+          tags: m365/m365-roadmap-frontend:latest
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
