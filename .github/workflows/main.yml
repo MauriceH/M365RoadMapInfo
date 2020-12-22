@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: m365/m365-roadmap-frontend:latest
+          tags: docker-registry.mauricehessing.de/m365/m365-roadmap-backend
           file:  ./source/Backend/dockerfile 
           context: ./source/Backend  
       -
