@@ -1,5 +1,7 @@
-using M365.RoadMapInfo.Import;
+using System.Security.Claims;
+using M365.RoadMapInfo.Authentication;
 using M365.RoadMapInfo.Model;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -21,9 +23,11 @@ namespace M365.RoadMapInfo
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddImporter();
+            services.AddUserService(Configuration);
+            
             services.AddControllers().AddJsonOptions(configure =>
             {
                 configure.JsonSerializerOptions.IgnoreNullValues = true;
@@ -40,13 +44,24 @@ namespace M365.RoadMapInfo
                 options.Level = System.IO.Compression.CompressionLevel.Fastest);
             services.AddDbContext<MainDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString(ConnectionStringName));
+                options.UseNpgsql(Configuration.GetConnectionString(ConnectionStringName));
             });
-            services.AddTransient<RoadMapImporter>();
-            services.Configure<ImportConfig>(Configuration.GetSection("Importer"));
+            
+
+            services.AddAuthentication("BasicAuthentication").
+                AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
+                    ("BasicAuthentication", null);
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(Policies.CanImport, policy =>
+                {
+                    policy.RequireClaim(ClaimTypes.Role, Policies.ClaimRoleImporter);
+                });
+            });
+            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MainDbContext context)
         {
             if (env.IsDevelopment())
@@ -63,6 +78,7 @@ namespace M365.RoadMapInfo
             
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             
 

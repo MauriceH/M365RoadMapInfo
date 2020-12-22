@@ -3,66 +3,68 @@ using System;
 using M365.RoadMapInfo.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace M365.RoadMapInfo.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20201118172748_Initial")]
-    partial class Initial
+    [Migration("20201222071745_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.9")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("M365.RoadMapInfo.Model.Feature", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("AddedToRoadmap")
                         .HasColumnType("date");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Details")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("EditType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
+                        .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
                     b.Property<DateTime>("LastModified")
                         .HasColumnType("date");
 
                     b.Property<string>("MoreInfo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("No")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Release")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
+                        .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
                     b.Property<string>("ValuesHash")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ValuesHash");
 
                     b.ToTable("Features");
                 });
@@ -70,19 +72,19 @@ namespace M365.RoadMapInfo.Migrations
             modelBuilder.Entity("M365.RoadMapInfo.Model.FeatureChange", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("FeatureChangeSetId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("NewValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("OldValue")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Property")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
@@ -95,20 +97,20 @@ namespace M365.RoadMapInfo.Migrations
             modelBuilder.Entity("M365.RoadMapInfo.Model.FeatureChangeSet", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
                     b.Property<Guid>("FeatureId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("ImportFileId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
+                        .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
                     b.HasKey("Id");
@@ -123,10 +125,10 @@ namespace M365.RoadMapInfo.Migrations
             modelBuilder.Entity("M365.RoadMapInfo.Model.FeatureTag", b =>
                 {
                     b.Property<Guid>("FeatureId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("TagId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("FeatureId", "TagId");
 
@@ -135,36 +137,18 @@ namespace M365.RoadMapInfo.Migrations
                     b.ToTable("FeatureTags");
                 });
 
-            modelBuilder.Entity("M365.RoadMapInfo.Model.ImportBatch", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("Stamp")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ImportBatches");
-                });
-
             modelBuilder.Entity("M365.RoadMapInfo.Model.ImportFile", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("DataDate")
                         .HasColumnType("date");
 
-                    b.Property<string>("FilePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ImportBatchId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("FileName")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImportBatchId");
 
                     b.ToTable("ImportFiles");
                 });
@@ -172,15 +156,15 @@ namespace M365.RoadMapInfo.Migrations
             modelBuilder.Entity("M365.RoadMapInfo.Model.Tag", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Category")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
+                        .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
@@ -223,15 +207,6 @@ namespace M365.RoadMapInfo.Migrations
                     b.HasOne("M365.RoadMapInfo.Model.Tag", "Tag")
                         .WithMany("FeatureTags")
                         .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("M365.RoadMapInfo.Model.ImportFile", b =>
-                {
-                    b.HasOne("M365.RoadMapInfo.Model.ImportBatch", "ImportBatch")
-                        .WithMany("ImportFiles")
-                        .HasForeignKey("ImportBatchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

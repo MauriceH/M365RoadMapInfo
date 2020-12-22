@@ -1,7 +1,6 @@
 import {useRecoilState, useRecoilValue} from "recoil";
 import {featureListPage, featureListPageSize} from "../store/FeatureListPaging";
-import React, {useCallback} from "react";
-import {featureListLastPage} from "../store/featureListFilteredSortedPaged";
+import React from "react";
 import {TablePagination} from "@material-ui/core";
 import {featureListFilteredTotalCount} from "../store/featureListFiltered";
 
@@ -11,16 +10,14 @@ export const FilterListPagination = () => {
     const [page, setPage] = useRecoilState(featureListPage);
     const [pageSize, setPageSize] = useRecoilState(featureListPageSize);
     return (
-        <>
-            <TablePagination
-                rowsPerPageOptions={[5, 10, 20, 50]}
-                component="div"
-                count={totalCount}
-                rowsPerPage={pageSize}
-                page={page}
-                onChangePage={(e,p)=>setPage(p)}
-                onChangeRowsPerPage={(e)=>{setPageSize(parseInt(e.target.value, 10))}}
-            />
-        </>
+        <TablePagination
+            rowsPerPageOptions={[5, 10, 20, 50]}
+            component="div"
+            count={totalCount}
+            rowsPerPage={pageSize}
+            page={page}
+            onChangePage={(e,p)=>setPage(p)}
+            onChangeRowsPerPage={(e)=>{setPageSize(parseInt(e.target.value, 10))}}
+        />
     )
 }

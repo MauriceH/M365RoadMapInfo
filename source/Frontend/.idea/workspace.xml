@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9995951-fb7b-4ab0-b3ca-9ae6d771d59c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Backend/M365.RoadMapInfo/Import/RoadMapImporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/M365.RoadMapInfo/Import/RoadMapImporter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/FeatureListPagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/FeatureListPagination.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TitleSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/TitleSearch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/FeatureListPaging.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/FeatureListPaging.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/featureListFilteredSorted.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/featureListFilteredSorted.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/featureListFilteredSortedPaged.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/featureListFilteredSortedPaged.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,14 +48,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="C:\develop\M365\M365.RoadMapInfo\source\Frontend\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -88,7 +99,8 @@
       <workItem from="1607764403910" duration="4003000" />
       <workItem from="1607768902352" duration="6483000" />
       <workItem from="1607867369464" duration="13575000" />
-      <workItem from="1607923927804" duration="30000" />
+      <workItem from="1607923927804" duration="2459000" />
+      <workItem from="1608033728291" duration="4773000" />
     </task>
     <servers />
   </component>
@@ -99,5 +111,9 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

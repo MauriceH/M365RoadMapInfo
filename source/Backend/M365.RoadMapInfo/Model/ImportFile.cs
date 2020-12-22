@@ -11,13 +11,10 @@ namespace M365.RoadMapInfo.Model
         public Guid Id { get; set; }
         
         [MaxLength]
-        public string FilePath { get; set; }
+        public string FileName { get; set; }
         
         
         public DateTime DataDate { get; set; }
-        
-        public ImportBatch ImportBatch { get; set; }
-        public Guid ImportBatchId { get; set; }
         
     }
 }

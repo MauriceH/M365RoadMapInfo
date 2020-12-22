@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using M365.RoadMapInfo.Api;
 using M365.RoadMapInfo.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.Logging;
 
 namespace M365.RoadMapInfo.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class RoadMapController : Controller
     {

@@ -3,14 +3,15 @@ import {FeatureSlim} from "../model/feature";
 import featureListFilteredSorted from "./featureListFilteredSorted";
 import {PagedData} from "../model/PagedData";
 import {featureListPage, featureListPageSize} from "./FeatureListPaging";
+import featureListFiltered from "./featureListFiltered";
 
 
 export const featureListLastPage = selector<number>({
     key: 'featureListLastPage',
     get: ({get}) => {
-        const features = get(featureListFilteredSorted);
+        const features = get(featureListFiltered);
         const pageSize = get(featureListPageSize);
-        return Math.ceil(features.length / pageSize);
+        return Math.floor(features.length / pageSize);
     }
 });
 
@@ -22,7 +23,7 @@ export const featureListFilteredSortedPaged = selector<PagedData<FeatureSlim>>({
             const page = get(featureListPage);
             const pageSize = get(featureListPageSize);
 
-            const startIndex = (page - 1) * pageSize;
+            const startIndex = (page) * pageSize;
             const endIndex = Math.min(startIndex + (pageSize - 1), features.length - 1);
             const pagedFeatures = features.slice(startIndex, endIndex)
 

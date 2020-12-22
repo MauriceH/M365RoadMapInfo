@@ -92,8 +92,6 @@ namespace M365.RoadMapInfo.Model
 
         public virtual DbSet<FeatureTag> FeatureTags { get; set; }
         
-        public virtual DbSet<ImportBatch> ImportBatches { get; set; }
-        
         public virtual DbSet<ImportFile> ImportFiles { get; set; }
         
         public virtual DbSet<FeatureChangeSet> FeatureChangeSets { get; set; }

@@ -9,7 +9,7 @@ export const TitleSearch = () => {
     const setPage = useSetRecoilState(featureListPage);
 
     const onSearch = useCallback((value) => {
-        setPage(1)
+        setPage(0)
         setSearchValue(value)
     }, [setSearchValue])
     return (
