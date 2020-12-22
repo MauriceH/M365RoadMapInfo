@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9995951-fb7b-4ab0-b3ca-9ae6d771d59c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FeatureListPagination.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/FeatureListPagination.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TitleSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/TitleSearch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/features/[hash].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/features/[hash].tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/FeatureListPaging.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/FeatureListPaging.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/featureListFilteredSorted.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/featureListFilteredSorted.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/featureListFilteredSortedPaged.ts" beforeDir="false" afterPath="$PROJECT_DIR$/store/featureListFilteredSortedPaged.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +101,7 @@
       <workItem from="1607867369464" duration="13575000" />
       <workItem from="1607923927804" duration="2459000" />
       <workItem from="1608033728291" duration="4773000" />
+      <workItem from="1608625291506" duration="3712000" />
     </task>
     <servers />
   </component>

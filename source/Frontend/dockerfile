@@ -1,6 +1,5 @@
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1.404-alpine3.12 AS build-env
-WORKDIR /app/build/backend
+FROM alpine:latest AS build-env
+WORKDIR /app/build/
 
 RUN set -eux \
     & apk add \
@@ -8,10 +7,18 @@ RUN set -eux \
         nodejs \
         yarn
 
-COPY Backend/M365.RoadMapInfo.sln Backend/**/*.csproj ./
-RUN mkdir M365.RoadMapInfo       && mv M365.RoadMapInfo.csproj M365.RoadMapInfo/ && \
-    dotnet restore -r linux-musl-x64
-COPY Backend/ ./
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install
+COPY . ./
+RUN mkdir ./public/features
+RUN yarn export
 
-RUN dotnet publish --no-restore -c Release -o /app/build/out -r linux-musl-x64 -f netcoreapp3.1 --self-contained=false
-
+FROM nginx:alpine
+WORKDIR /app
+COPY entrypoint.sh .
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+RUN  chmod u+x entrypoint.sh
+ENTRYPOINT /app/entrypoint.sh
+EXPOSE 80
+COPY --from=build-env /app/build/out/ /usr/share/nginx/html

@@ -4,6 +4,7 @@ import matter from 'gray-matter'
 import {GetStaticPathsResult} from "next";
 import {ParsedUrlQuery} from "querystring";
 import Feature from "../model/feature";
+import createGetRequestOptions from "./api";
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
@@ -38,11 +39,11 @@ export function getSortedPostsData() {
 }
 
 export const getAllFeatureHashes = async () => {
-    const res = await fetch("http://localhost:5000/roadmap/features-hashes");
+    const res = await fetch(process.env.BACKEND_HOST + '/roadmap/features-hashes',createGetRequestOptions());
     return await res.json() as string[]
 }
 
 export const getFeatureData = async (hash: string): Promise<Feature> => {
-    const res = await fetch("http://localhost:5000/roadmap/features/" + hash);
+    const res = await fetch(process.env.BACKEND_HOST + '/roadmap/features/' + hash,createGetRequestOptions());
     return await res.json() as Feature
 };
