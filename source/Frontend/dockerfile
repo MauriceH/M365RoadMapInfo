@@ -1,0 +1,17 @@
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.404-alpine3.12 AS build-env
+WORKDIR /app/build/backend
+
+RUN set -eux \
+    & apk add \
+        --no-cache \
+        nodejs \
+        yarn
+
+COPY Backend/M365.RoadMapInfo.sln Backend/**/*.csproj ./
+RUN mkdir M365.RoadMapInfo       && mv M365.RoadMapInfo.csproj M365.RoadMapInfo/ && \
+    dotnet restore -r linux-musl-x64
+COPY Backend/ ./
+
+RUN dotnet publish --no-restore -c Release -o /app/build/out -r linux-musl-x64 -f netcoreapp3.1 --self-contained=false
+

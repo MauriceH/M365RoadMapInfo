@@ -6,24 +6,26 @@ import PaginationResult from "../model/PaginationResult";
 import {FeatureSlim} from "../model/feature";
 import fs from "fs";
 import {useCallback, useEffect} from "react";
-import {useRecoilValue, useSetRecoilState} from "recoil";
+import {useRecoilState, useRecoilValue, useSetRecoilState} from "recoil";
 import featureListData from "../store/featureListData";
 import {featureListFilteredSortedPaged} from "../store/featureListFilteredSortedPaged";
 import {FilterListPagination} from "../components/FeatureListPagination";
 import {TitleSearch} from "../components/TitleSearch";
 import {
+    Button,
     Card,
     CardHeader,
     Table,
     TableBody,
     TableCell,
     TableHead,
-    TablePagination,
     TableRow,
     TableSortLabel
 } from "@material-ui/core";
 import {formatDate} from "../components/date";
 import {GetStaticProps} from "next";
+import {featureListPage} from "../store/FeatureListPaging";
+import {featureListSorting} from "../store/featureListFilteredSorted";
 
 
 interface Props {
@@ -33,10 +35,13 @@ interface Props {
 
 export default function Home({pageFiles}: Props) {
     const setFeatureData = useSetRecoilState(featureListData);
+    const setFeatureListPage = useSetRecoilState(featureListPage);
+    const [listSorting, setListSorting] = useRecoilState(featureListSorting);
     const featureData = useRecoilValue(featureListFilteredSortedPaged);
 
     useEffect(() => {
         if (featureData?.items?.length ?? 0 > 0) return;
+        setFeatureListPage(0)
         const loading = async () => {
             try {
                 const files = pageFiles
@@ -53,8 +58,21 @@ export default function Home({pageFiles}: Props) {
             }
         }
         loading();
-    }, [featureData])
+    }, [featureData, pageFiles, setFeatureData, setFeatureListPage])
 
+    const testCallback = useCallback(() => {
+        setListSorting(oldSorting => ({key: oldSorting.key, order: oldSorting.order == 'asc' ? 'desc' : 'asc'}))
+    }, [setListSorting])
+
+
+    const columns = [
+        {key: 'no', label: 'No', width: '10px'},
+        {key: 'description', label: 'Description', width: 'auto'},
+        {key: 'status', label: 'Status', width: '100px'},
+        {key: 'lastModified', label: 'Modified', width: '50px'},
+        {key: 'product', label: 'Product', width: '250px'},
+        {key: 'platform', label: 'Platform', width: '250px'},
+    ]
 
     return (
         <Layout home>
@@ -72,41 +90,20 @@ export default function Home({pageFiles}: Props) {
                   <FilterListPagination/>
                 </div>
                 <div>
-
+                  <Button onClick={testCallback}>Test</Button>
                 </div>
                 <Table size={'small'}>
                   <TableHead>
                     <TableRow>
-                      <TableCell>
-                        <TableSortLabel active={false}>
-                          No
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell>
-                        <TableSortLabel active={false}>
-                          Description
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell>
-                        <TableSortLabel active={false}>
-                          Status
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell>
-                        <TableSortLabel active={false}>
-                          Last Modified
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell>
-                        <TableSortLabel active={false}>
-                          Product
-                        </TableSortLabel>
-                      </TableCell>
-                      <TableCell>
-                        <TableSortLabel active={false}>
-                          Platform
-                        </TableSortLabel>
-                      </TableCell>
+                        {columns.map(column => {
+                            return (
+                                <TableCell key={column.key} style={{width: column.width}}>
+                                    <TableSortLabel active={listSorting.key == column.key}>
+                                        {column.label}
+                                    </TableSortLabel>
+                                </TableCell>
+                            );
+                        })}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -146,8 +143,7 @@ export default function Home({pageFiles}: Props) {
     )
 }
 
-export const getStaticProps: GetStaticProps = async () =>
-{
+export const getStaticProps: GetStaticProps = async () => {
 
 
     let response = await fetch('http://localhost:5000/RoadMap?totalCount=true');

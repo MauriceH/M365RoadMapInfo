@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace M365.RoadMapInfo.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,15 +29,16 @@ namespace M365.RoadMapInfo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ImportBatches",
+                name: "ImportFiles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Stamp = table.Column<DateTimeOffset>(nullable: false)
+                    FileName = table.Column<string>(nullable: true),
+                    DataDate = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ImportBatches", x => x.Id);
+                    table.PrimaryKey("PK_ImportFiles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -51,50 +52,6 @@ namespace M365.RoadMapInfo.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tags", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ImportFiles",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    FilePath = table.Column<string>(nullable: true),
-                    DataDate = table.Column<DateTime>(type: "date", nullable: false),
-                    ImportBatchId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImportFiles", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ImportFiles_ImportBatches_ImportBatchId",
-                        column: x => x.ImportBatchId,
-                        principalTable: "ImportBatches",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FeatureTags",
-                columns: table => new
-                {
-                    FeatureId = table.Column<Guid>(nullable: false),
-                    TagId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FeatureTags", x => new { x.FeatureId, x.TagId });
-                    table.ForeignKey(
-                        name: "FK_FeatureTags_Features_FeatureId",
-                        column: x => x.FeatureId,
-                        principalTable: "Features",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FeatureTags_Tags_TagId",
-                        column: x => x.TagId,
-                        principalTable: "Tags",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,6 +77,30 @@ namespace M365.RoadMapInfo.Migrations
                         name: "FK_FeatureChangeSets_ImportFiles_ImportFileId",
                         column: x => x.ImportFileId,
                         principalTable: "ImportFiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FeatureTags",
+                columns: table => new
+                {
+                    FeatureId = table.Column<Guid>(nullable: false),
+                    TagId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeatureTags", x => new { x.FeatureId, x.TagId });
+                    table.ForeignKey(
+                        name: "FK_FeatureTags_Features_FeatureId",
+                        column: x => x.FeatureId,
+                        principalTable: "Features",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FeatureTags_Tags_TagId",
+                        column: x => x.TagId,
+                        principalTable: "Tags",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -161,14 +142,14 @@ namespace M365.RoadMapInfo.Migrations
                 column: "ImportFileId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Features_ValuesHash",
+                table: "Features",
+                column: "ValuesHash");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FeatureTags_TagId",
                 table: "FeatureTags",
                 column: "TagId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ImportFiles_ImportBatchId",
-                table: "ImportFiles",
-                column: "ImportBatchId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -190,9 +171,6 @@ namespace M365.RoadMapInfo.Migrations
 
             migrationBuilder.DropTable(
                 name: "ImportFiles");
-
-            migrationBuilder.DropTable(
-                name: "ImportBatches");
         }
     }
 }

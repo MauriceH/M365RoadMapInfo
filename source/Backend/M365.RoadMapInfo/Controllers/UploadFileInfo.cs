@@ -2,9 +2,9 @@ using System;
 
 namespace M365.RoadMapInfo.Import
 {
-    public class CsvFileInfo
+    public class UploadFileInfo
     {
-        public string FilePath { get; set; }
+        public string FileName { get; set; }
         public DateTime DownloadTime { get; set; }
     }
 }
