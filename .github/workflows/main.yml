@@ -45,7 +45,8 @@ jobs:
         with:
           push: true
           tags: m365/m365-roadmap-frontend:latest
-          file:  source/Backend/dockerfile 
+          file:  dockerfile 
+          working-directory: ./source/Backend  
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
