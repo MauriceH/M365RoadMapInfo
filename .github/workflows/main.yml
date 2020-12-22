@@ -43,7 +43,7 @@ jobs:
         with:
           push: true
           tags: m365/m365-roadmap-frontend:latest
-          file:  ./dockerfile 
+          file:  ./source/Backend/dockerfile 
           context: ./source/Backend  
       -
         name: Image digest
