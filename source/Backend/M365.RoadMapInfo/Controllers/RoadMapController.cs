@@ -73,6 +73,7 @@ namespace M365.RoadMapInfo.Controllers
             return Json(hashes);
         }
 
+        
         [HttpGet("features/{hash}")]
         public async Task<IActionResult> Get([FromRoute] string hash)
         {
@@ -81,6 +82,15 @@ namespace M365.RoadMapInfo.Controllers
                 .FirstOrDefaultAsync(x => x.ValuesHash == hash);
             if (feat == null) return NotFound();
             return Json(CreateFeatureDTO(feat,true));
+        }
+        
+        [AllowAnonymous]
+        [HttpGet("data-hash")]
+        public async Task<IActionResult> GetDataHash([FromRoute] string hash)
+        {
+            var features = await _db.Features.AsNoTracking().ToListAsync();
+            var dataHash = features.GenerateFeatureHashListHash();
+            return Json(new {Hash=dataHash});
         }
 
         private IQueryable<Feature> QueryFeatures(bool withChanges = false)

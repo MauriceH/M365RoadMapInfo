@@ -22,7 +22,7 @@
 
 .headingMd {
     font-size: 1.2rem;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .borderCircle {
@@ -34,7 +34,7 @@
 }
 
 .padding1px {
-    padding-top: 1px;
+    padding-top: 0px;
 }
 
 .list {

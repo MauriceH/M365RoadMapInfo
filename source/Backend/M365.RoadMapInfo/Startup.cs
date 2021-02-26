@@ -47,6 +47,7 @@ namespace M365.RoadMapInfo
                 options.UseNpgsql(Configuration.GetConnectionString(ConnectionStringName));
             });
             
+            services.AddCors();
 
             services.AddAuthentication("BasicAuthentication").
                 AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
@@ -69,12 +70,19 @@ namespace M365.RoadMapInfo
                 app.UseDeveloperExceptionPage();
             }
 
+                       
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin());
+            
             app.UseResponseCaching();
             
             app.UseResponseCompression();
 
             //app.UseHttpsRedirection();
-           
+
+                
             
             app.UseRouting();
 
