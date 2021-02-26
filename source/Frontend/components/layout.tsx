@@ -3,7 +3,7 @@ import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'M365 RoadMapInfo'
 
 export default function Layout({
                                    children,
@@ -15,7 +15,7 @@ export default function Layout({
     return (
         <div className={styles.container}>
             <Head>
-                <title>M365 RoadMapInfo</title>
+                <title>{siteTitle}</title>
                 <meta
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width"

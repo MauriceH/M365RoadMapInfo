@@ -12,7 +12,7 @@ export type SortOrder = 'asc' | 'desc'
 
 export const featureListSorting = atom<Sorting>({
     key: 'featureListSorting',
-    default: {key: "lastModified", order: "asc"}
+    default: {key: "lastModified", order: "desc"}
 });
 
 

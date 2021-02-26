@@ -1,26 +1,12 @@
-FROM alpine:latest AS build-env
+FROM node:alpine
 WORKDIR /app/build/
-
-RUN set -eux \
-    & apk add \
-        --no-cache \
-        nodejs \
-        yarn
 
 COPY ./package.json ./
 COPY ./yarn.lock ./
 RUN yarn install
 COPY . ./
 RUN mkdir ./public/features
-ADD "https://m365roadmap-backend.mauricehessing.de/roadmap/data-hash" data-hash.json
-RUN yarn export
-
-FROM nginx:alpine
-WORKDIR /app
-COPY entrypoint.sh .
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-RUN  chmod u+x entrypoint.sh
-COPY --from=build-env /app/build/out/ /usr/share/nginx/html
-RUN ls
-ENTRYPOINT ./entrypoint.sh
-EXPOSE 80
+# ADD "https://m365roadmap-backend.mauricehessing.de/roadmap/data-hash" data-hash.json
+RUN yarn build
+CMD ["yarn", "start"]
+EXPOSE 3000

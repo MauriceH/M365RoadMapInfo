@@ -4,6 +4,8 @@ import featureListData from "./featureListData";
 
 export const featureListSearchValue = atom<string>({key: 'featureListSearchValue', default: ''});
 
+export const featureListProductFilter = atom<string[]>({key: 'featureListProductFilter', default: ['Microsoft Teams']});
+
 export const featureListFilteredTotalCount = selector<number>({
     key: 'featureListFilteredTotalCount',
     get: ({get}) => {
@@ -17,9 +19,35 @@ export const featureListFiltered = selector<FeatureSlim[]>({
     get: ({get}) => {
         const features = get(featureListData);
         const titleSearchValue = get(featureListSearchValue)?.toLowerCase() ?? '';
+        const products = get(featureListProductFilter);
+
 
         return features.filter(feature => {
-            return feature.description.toLowerCase().includes(titleSearchValue)
+            let isOk = true;
+            if(titleSearchValue != '') {
+                isOk = feature.description.toLowerCase().includes(titleSearchValue);
+            }
+            if (!isOk) return false
+            if (products.length > 0) {
+                isOk = false;
+                const cat = feature.tagCategories?.find(cat => cat.category == 'Product')
+                if (cat == null) {
+                    return false
+                } else {
+                    for (let i = 0; i < cat.tags.length; i++) {
+                        const tag = cat.tags[i];
+                        for (let j = 0; j < products.length; j++) {
+                            if (products[j] == tag) {
+                                isOk = true;
+                                break;
+                            }
+                        }
+                        if (isOk) break;
+                    }
+                }
+            }
+            if (!isOk) return false
+            return isOk
         });
     }
 });
