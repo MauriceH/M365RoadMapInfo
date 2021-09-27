@@ -75,6 +75,7 @@ namespace M365.RoadMapInfo.Controllers
 
         
         [HttpGet("features/{hash}")]
+        [ResponseCache(Duration = 3600 * 24 * 10, Location = ResponseCacheLocation.Any)]
         public async Task<IActionResult> Get([FromRoute] string hash)
         {
             var query = QueryFeatures(true);

@@ -28,7 +28,9 @@ namespace M365.RoadMapInfo
             services.AddImporter();
             services.AddUserService(Configuration);
             
-            services.AddControllers().AddJsonOptions(configure =>
+            services.AddControllers(options =>
+            {
+            }).AddJsonOptions(configure =>
             {
                 configure.JsonSerializerOptions.IgnoreNullValues = true;
             });
@@ -40,6 +42,7 @@ namespace M365.RoadMapInfo
             {
                 options.UseCaseSensitivePaths = true;
             });
+            
             services.Configure<GzipCompressionProviderOptions>(options =>
                 options.Level = System.IO.Compression.CompressionLevel.Fastest);
             services.AddDbContext<MainDbContext>(options =>
