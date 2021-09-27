@@ -3,7 +3,6 @@ import {getAllFeatureHashes, getFeatureData} from '../../lib/features'
 import Head from 'next/head'
 import Feature from "../../model/feature";
 import {ParsedUrlQuery} from "querystring";
-import {formatDate} from '../../components/date'
 import {Card, CardContent, CardHeader, Chip, Theme, Typography} from "@material-ui/core";
 import {GetStaticPaths, GetStaticProps} from "next";
 import React from "react";

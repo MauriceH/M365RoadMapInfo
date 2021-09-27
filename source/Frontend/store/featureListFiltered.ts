@@ -4,7 +4,7 @@ import featureListData from "./featureListData";
 
 export const featureListSearchValue = atom<string>({key: 'featureListSearchValue', default: ''});
 
-export const featureListProductFilter = atom<string[]>({key: 'featureListProductFilter', default: ['Microsoft Teams']});
+export const featureListProductFilter = atom<string[]>({key: 'featureListProductFilter', default: []});
 
 export const featureListFilteredTotalCount = selector<number>({
     key: 'featureListFilteredTotalCount',
